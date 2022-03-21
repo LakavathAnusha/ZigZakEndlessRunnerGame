@@ -1,0 +1,9 @@
+Introduction: Endless Runner game is catagories is an action game genre in which player
+needs to run in a fixed path or pathways.
+
+
+
+-->GamePlay
+->the player needs to collect the coins in the environment by moving left right in the environment.
+->the player can pause/quit the game during any time during the run b clicking on pause and quit button.
+->if player dies during the run the game over screen needs to be activated where the player now restart the game by pressing the restart the game or exit button. 
