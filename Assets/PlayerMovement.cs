@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public Vector3 direction;
     public float speed;
+    //TileSpawnManager spawnManager;
     // Start is called before the first frame update
     void Start()
     {
         
+        //spawnManager = GameObject.Find("TileSpawnManager").GetComponent<TileSpawnManager>();
     }
 
     // Update is called once per frame
@@ -29,11 +31,27 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.Translate(direction * Time.deltaTime * speed);
     }
-    public void OnCollisionEnter(Collision collision)
+
+    public void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.tag=="tile")
+
+        // spawnManager.SpawnTile();
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject, 3.0f);
+            TileSpawnManager.Instance.SpawnTile();
+        }
+        
+    }
+   
+    private void OnCollisionEnter(Collision collision)
+    {
+        ScoreManager score;
+        if (collision.gameObject.tag == "coin")
+        {
+            collision.gameObject.SetActive(false);
+            score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+            score.ScoreCalculator(10);
         }
     }
+
 }
